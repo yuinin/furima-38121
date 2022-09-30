@@ -11,7 +11,7 @@
 | last_name          | string | null: false, 全角漢字,かな,カナ |
 | first_name_kana    | string | null: false, 全角カナ         |
 | last_name_kana     | string | null: false, 全角カナ         |
-| birthday           | string | null: false                  |
+| birthday           | date   | null: false                  |
 
 ### Association
 - has_many :items
