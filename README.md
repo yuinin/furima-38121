@@ -9,7 +9,8 @@
 | encrypted_password | string | null: false, 全角漢字,かな,カナ |
 | first_name         | string | null: false, 全角漢字,かな,カナ |
 | last_name          | string | null: false, 全角漢字,かな,カナ |
-| name_kana          | string | null: false, 全角カナ         |
+| first_name_kana    | string | null: false, 全角カナ         |
+| last_name_kana     | string | null: false, 全角カナ         |
 | birthday           | string | null: false                  |
 
 ### Association
@@ -22,16 +23,16 @@
 | ------------------ | ---------- | ------------------------------ |
 | product_name       | string     | null: false                    |
 | explanation        | text       | null: false                    |
-| category           | integer    | null: false                    |
-| condition          | integer    | null: false                    |
-| shipping_cost      | integer    | null: false                    |
-| from               | integer    | null: false                    |
-| send               | integer    | null: false                    |
-| price              | integer    | null: false, ¥300~¥9999999     |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| shipping_cost_id   | integer    | null: false                    |
+| from_id            | integer    | null: false                    |
+| send_id            | integer    | null: false                    |
+| price              | integer    | null: false                    |
 | user_id            | references | null: false, foreign_key: true |
 
 ### Association
-- has_many :orders
+- has_one :order
 - belongs_to :user
 
 
@@ -39,7 +40,7 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| price              | integer    | null: false, ¥300~¥9999999     |
+| price              | integer    | null: false                    |
 | user_id            | references | null: false, foreign_key: true |
 | item_id            | references | null: false, foreign_key: true |
 
@@ -54,7 +55,7 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
-| prefecture         | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | city               | string     | null: false                    |
 | house_number       | string     | null: false                    |
 | building_name      | string     |                                |
@@ -62,3 +63,4 @@
 | order_id           | references | null: false, foreign_key: true |
 
 ### Association
+- belongs_to :order
