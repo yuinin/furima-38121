@@ -6,7 +6,7 @@
 | ------------------ | ------ | ---------------------------- |
 | nickname           | string | null: false,                 |
 | email              | string | null: false, unique: true    |
-| encrypted_password | string | null: false, 全角漢字,かな,カナ |
+| encrypted_password | string | null: false,                 |
 | first_name         | string | null: false, 全角漢字,かな,カナ |
 | last_name          | string | null: false, 全角漢字,かな,カナ |
 | first_name_kana    | string | null: false, 全角カナ         |
