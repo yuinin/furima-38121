@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
     context '新規登録できるとき' do
       it 'nickname,email,password,first_name,last_name,first_name_kana,last_name_kana,birthdayが存在すれば登録できる' do
-       expect(@user).to be_valid
+        expect(@user).to be_valid
       end
     end
     context '新規登録できないとき' do
@@ -54,7 +54,7 @@ RSpec.describe User, type: :model do
         @user.password = Faker::Internet.password(min_length: 129)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")    
+        expect(@user.errors.full_messages).to include('Password is too long (maximum is 128 characters)')
       end
       it 'first_nameが空では登録できない' do
         @user.first_name = ''
@@ -79,22 +79,22 @@ RSpec.describe User, type: :model do
       it 'first_nameが全角漢字、かな、カナ以外では登録できない' do
         @user.first_name = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name 全角文字を使用してください')
       end
       it 'last_nameが全角漢字、かな、カナ以外では登録できない' do
         @user.last_name = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('Last name 全角文字を使用してください')
       end
       it 'first_name_kanaが全角カナ以外では登録できない' do
         @user.first_name_kana = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name kana 全角文字を使用してください')
       end
       it 'last_name_kanaが全角カナ以外では登録できない' do
         @user.last_name_kana = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include('Last name kana 全角文字を使用してください')
       end
       it 'birthdayが空では登録できない' do
         @user.birthday = ''
@@ -104,4 +104,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
