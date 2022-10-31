@@ -6,12 +6,22 @@ class Item < ApplicationRecord
   validates :product_name, presence: true
   validates :explanation, presence: true
 
-  validates :category_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :condition_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipping_cost_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :from_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :send_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  with_options presence: true, numericality: { other_than: 1 , message: "can't be blank"} do
+    validates :category_id
+    validates :condition_id
+    validates :shipping_cost_id
+    validates :from_id
+    validates :send_id  
+  end
 
   validates :price, presence: true, numericality: true, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
-  validates :user_id, presence: true, foreign_key: true
+  validates :user_id, presence: true
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+    belongs_to :category
+    belongs_to :condition
+    belongs_to :shipping_cost
+    belongs_to :from
+    belongs_to :send
+
 end
