@@ -21,5 +21,5 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :shipping_cost
   belongs_to :from
-  belongs_to :send
+  belongs_to :scheduled_delivery
 end
