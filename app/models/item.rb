@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     validates :send_id
   end
 
-  validates :price, presence: true, numericality: true, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
+  validates :price, presence: true, numericality: true, inclusion: { in: 300..9_999_999 }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category

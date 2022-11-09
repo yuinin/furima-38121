@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :new]
   before_action :move_to_login, except: [:index]
 
   def new
@@ -16,10 +15,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  def move_to_index
-    redirect_to action: :index unless user_signed_in?
-  end
 
   def move_to_login
     redirect_to new_user_session_path unless user_signed_in?

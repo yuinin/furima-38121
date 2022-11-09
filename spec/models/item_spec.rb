@@ -26,28 +26,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
-      it 'category_idが空では出品できない' do
-        @item.category_id = ''
+      it 'category_idが1では出品できない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it 'condition_idが空では出品できない' do
-        @item.condition_id = ''
+      it 'condition_idが1では出品できない' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
-      it 'shipping_cost_idが空では出品できない' do
-        @item.shipping_cost_id = ''
+      it 'shipping_cost_idが1では出品できない' do
+        @item.shipping_cost_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
       end
-      it 'from_idが空では出品できない' do
-        @item.from_id = ''
+      it 'from_idが1では出品できない' do
+        @item.from_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("From can't be blank")
       end
-      it 'send_idが空では出品できない' do
-        @item.send_id = ''
+      it 'send_idが1では出品できない' do
+        @item.send_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Send can't be blank")
       end
@@ -65,6 +65,11 @@ RSpec.describe Item, type: :model do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+      it 'userが紐づいていないと出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
