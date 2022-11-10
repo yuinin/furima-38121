@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_login, except: [:index]
+  before_action :move_to_login, except: [:index, :show]
 
   def index
     @item = Item.all.order(updated_at: 'DESC')
@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @user = User.find_by(id: @item.user_id)
   end
 
   private
