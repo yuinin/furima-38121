@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :move_to_login, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :move_to_login, except: [:index, :show]
+
 
   def index
     @item = Item.all.order(updated_at: 'DESC')
@@ -16,6 +18,10 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
