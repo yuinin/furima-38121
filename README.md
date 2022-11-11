@@ -27,7 +27,7 @@
 | condition_id       | integer    | null: false                    |
 | shipping_cost_id   | integer    | null: false                    |
 | from_id            | integer    | null: false                    |
-| send_id            | integer    | null: false                    |
+| scheduled_delivery_id | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user_id            | references | null: false, foreign_key: true |
 
