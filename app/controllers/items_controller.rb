@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_login, except: [:index, :show]
 
-
   def index
     @item = Item.all.order(updated_at: 'DESC')
   end
@@ -27,6 +26,11 @@ class ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
   end
+  
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+  end
 
   private
 
@@ -36,6 +40,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :product_name, :explanation, :category_id, :condition_id, :shipping_cost_id, :from_id,
-                                 :send_id, :price).merge(user_id: current_user.id)
+                                 :scheduled_delivery_id, :price).merge(user_id: current_user.id)
   end
 end
