@@ -12,7 +12,7 @@ class Item < ApplicationRecord
     validates :condition_id
     validates :shipping_cost_id
     validates :from_id
-    validates :send_id
+    validates :scheduled_delivery_id
   end
 
   validates :price, presence: true, numericality: true, inclusion: { in: 300..9_999_999 }
