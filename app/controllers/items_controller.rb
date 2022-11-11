@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_login, except: [:index, :show]
+  before_action :authenticate_user!, only: [:destroy]
 
   def index
     @item = Item.all.order(updated_at: 'DESC')
