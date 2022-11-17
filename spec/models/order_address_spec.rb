@@ -28,35 +28,30 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
-      it 'prefectureを選択していないと保存できないこと' do
-        @order_address.prefecture = 0
+      it 'prefectureが1では保存できないこと' do
+        @order_address.prefecture = 1
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it 'priceが空だと保存できないこと' do
-        @order_address.price = nil
+      it 'cityが空だと保存できないこと' do
+        @order_address.city = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Price can't be blank")
+        expect(@order_address.errors.full_messages).to include("City can't be blank")
       end
-      it 'priceが全角数字だと保存できないこと' do
-        @order_address.price = '２０００'
+      it 'house_numberが空だと保存できないこと' do
+        @order_address.house_number = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Price is invalid')
+        expect(@order_address.errors.full_messages).to include("House number can't be blank")
       end
-      it 'priceが1円未満では保存できないこと' do
-        @order_address.price = 0
+      it 'phone_numberが空だと保存できないこと' do
+        @order_address.phone_number = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Price is invalid')
+        expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'priceが1,000,000円を超過すると保存できないこと' do
-        @order_address.price = 1000001
+      it 'tokenが空だと保存できないこと' do
+        @order_address.token = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Price is invalid')
-      end
-      it 'userが紐付いていないと保存できないこと' do
-        @order_address.user_id = nil
-        @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("User can't be blank")
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
