@@ -7,8 +7,6 @@ class OrderAddress
   validates :city, presence: true
   validates :house_number, presence: true
   validates :phone_number, presence: true, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid.' }
-  validates :user_id, presence: true
-  validates :item_id, presence: true
   validates :token, presence: true
 
   def save
