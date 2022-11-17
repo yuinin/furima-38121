@@ -7,5 +7,4 @@ class Order < ApplicationRecord
   def index
     @order = OrderAdress.new
   end
-
 end

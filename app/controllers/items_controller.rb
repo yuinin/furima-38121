@@ -23,10 +23,10 @@ class ItemsController < ApplicationController
 
   def show
   end
-  
+
   def edit
   end
-  
+
   def update
     if @item.update(item_params)
       redirect_to root_path
@@ -36,9 +36,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.destroy
   end
 
   private
@@ -52,13 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if user_signed_in?
-      unless (@item.user_id == current_user.id) && (@item.order == nil)
-        redirect_to action: :index
-      end
-    else
-
-    end
+    redirect_to action: :index if user_signed_in? && !((@item.user_id == current_user.id) && @item.order.nil?)
   end
 
   def item_params
