@@ -46,10 +46,10 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("From can't be blank")
       end
-      it 'send_idが1では出品できない' do
-        @item.send_id = 1
+      it 'scheduled_delivery_idが1では出品できない' do
+        @item.scheduled_delivery_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Send can't be blank")
+        expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
       it 'priceが空では出品できない' do
         @item.price = ''

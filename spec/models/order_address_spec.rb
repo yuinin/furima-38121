@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
 
   before do
-    @order_address = FactoryBot.build(:order_address)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item)
+    @order_address = FactoryBot.build(:order_address, user_id: @user.id, item_id: "1")
   end
 
   describe '購入情報の保存' do
@@ -69,14 +71,14 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
       it 'userが紐づいていないと保存できないこと' do
-        @order_address.user = nil
+        @order_address.user_id = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("User must exist")
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
       end
       it 'itemが紐づいていないと保存できないこと' do
-        @order_address.item = nil
+        @order_address.item_id = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Item must exist")
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
