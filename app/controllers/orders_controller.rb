@@ -1,20 +1,21 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_login, only: [:index]
+  before_action :move_to_top, only: [:index]
   attr_accessor :token
 
   def index
-    @order = Order.new
+    @order_address = OrderAddress.new
   end
 
   def create
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
-      pay_item
       @order_address.save
-      return redirect_to root_path
+      redirect_to root_path
     else
-      render 'index'
+      render :index
     end
   end
 
@@ -22,6 +23,20 @@ class OrdersController < ApplicationController
 
   def set_item
      @item = Item.find(params[:item_id])
+  end
+
+  def move_to_login
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def move_to_top
+    if user_signed_in?
+      if @item.user_id == current_user.id
+        redirect_to root_path
+      elsif @item.order.present?
+        redirect_to root_path
+      end
+    end
   end
 
   def pay_item
